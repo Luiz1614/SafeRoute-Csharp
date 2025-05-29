@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SafeRoute.Contracts\SafeRoute.Contracts.csproj" />
+    <ProjectReference Include="..\SafeRoute.Infraestructure\SafeRoute.Infraestructure.csproj" />
+  </ItemGroup>
+
 </Project>

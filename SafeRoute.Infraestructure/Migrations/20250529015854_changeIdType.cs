@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SafeRoute.Infraestructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initDb : Migration
+    public partial class changeIdType : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace SafeRoute.Infraestructure.Migrations
                 name: "Events",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
                     Type = table.Column<string>(type: "NVARCHAR2(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "NVARCHAR2(500)", maxLength: 500, nullable: false),
                     EventTime = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
@@ -32,7 +33,8 @@ namespace SafeRoute.Infraestructure.Migrations
                 name: "SafeResources",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
                     Name = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "NVARCHAR2(500)", maxLength: 500, nullable: false),
                     Latitude = table.Column<decimal>(type: "decimal(9,6)", nullable: false),
@@ -48,7 +50,8 @@ namespace SafeRoute.Infraestructure.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
                     Name = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
                     Phone = table.Column<string>(type: "NVARCHAR2(20)", maxLength: 20, nullable: false),
