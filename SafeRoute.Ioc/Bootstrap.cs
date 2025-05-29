@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SafeRoute.Application.Services;
+using SafeRoute.Application.Services.Interfaces;
 using SafeRoute.Infraestructure.Data.AppData;
 using SafeRoute.Infraestructure.Mappings;
 
@@ -17,6 +19,7 @@ public class Bootstrap
         });
 
         service.AddScoped<IUserRepository, UserRepository>();
+        service.AddScoped<IUserService, UserService>();
 
         service.AddAutoMapper(typeof(MapperProfile));
     }

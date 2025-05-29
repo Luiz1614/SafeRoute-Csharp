@@ -34,7 +34,7 @@ public class UserRepository : IUserRepository
         return responseDtos;
     }
 
-    public async Task<UserResponseDto?> GetByIdAsync(Guid id)
+    public async Task<UserResponseDto?> GetByIdAsync(int id)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         if (user == null) return null;
@@ -43,9 +43,9 @@ public class UserRepository : IUserRepository
         return responseDto;
     }
 
-    public async Task<UserResponseDto?> UpdateAsync(UserRequestDto requestDto)
+    public async Task<UserResponseDto?> UpdateAsync(int id, UserRequestDto requestDto)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == requestDto.Id);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         if (user == null) return null;
 
         user.Name = requestDto.Name;
@@ -58,7 +58,7 @@ public class UserRepository : IUserRepository
         return responseDto;
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         if (user == null) return false;

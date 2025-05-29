@@ -6,9 +6,9 @@ namespace SafeRoute.Application.Services.Interfaces
     public interface IUserService
     {
         Task<UserResponseDto> AddUserAsync(UserRequestDto requestDto);
-        Task<bool> DeleteUserAsync(Guid id);
+        Task<bool> DeleteUserAsync(int id);
         Task<IEnumerable<UserResponseDto>> GetAllUsersAsync();
-        Task<UserResponseDto?> GetUserByIdAsync(Guid id);
-        Task<UserResponseDto?> UpdateUserAsync(UserRequestDto requestDto);
+        Task<UserResponseDto?> GetUserByIdAsync(int id);
+        Task<UserResponseDto?> UpdateUserAsync(int id, UserRequestDto requestDto);
     }
 }

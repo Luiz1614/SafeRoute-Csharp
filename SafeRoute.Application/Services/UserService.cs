@@ -23,17 +23,17 @@ public class UserService : IUserService
         return await _userRepository.GetAllAsync();
     }
 
-    public async Task<UserResponseDto?> GetUserByIdAsync(Guid id)
+    public async Task<UserResponseDto?> GetUserByIdAsync(int id)
     {
         return await _userRepository.GetByIdAsync(id);
     }
 
-    public async Task<UserResponseDto?> UpdateUserAsync(UserRequestDto requestDto)
+    public async Task<UserResponseDto?> UpdateUserAsync(int id, UserRequestDto requestDto)
     {
-        return await _userRepository.UpdateAsync(requestDto);
+        return await _userRepository.UpdateAsync(id, requestDto);
     }
 
-    public async Task<bool> DeleteUserAsync(Guid id)
+    public async Task<bool> DeleteUserAsync(int id)
     {
         return await _userRepository.DeleteAsync(id);
     }
