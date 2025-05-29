@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SafeRoute.Infraestructure.Data.AppData;
+using SafeRoute.Infraestructure.Mappings;
 
 namespace SafeRoute.Ioc;
 
@@ -14,5 +15,9 @@ public class Bootstrap
             var connectionString = configuration.GetConnectionString("Oracle");
             options.UseOracle(connectionString);
         });
+
+        service.AddScoped<IUserRepository, UserRepository>();
+
+        service.AddAutoMapper(typeof(MapperProfile));
     }
 }

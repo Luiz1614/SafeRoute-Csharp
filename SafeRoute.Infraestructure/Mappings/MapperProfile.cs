@@ -1,0 +1,15 @@
+﻿using AutoMapper;
+using SafeRoute.Contracts.Dtos.Requests;
+using SafeRoute.Contracts.Dtos.Responses;
+using SafeRoute.Domain.Entities;
+
+namespace SafeRoute.Infraestructure.Mappings;
+
+public class MapperProfile : Profile
+{
+    public MapperProfile()
+    {
+        CreateMap<User, UserRequestDto>().ReverseMap();
+        CreateMap<User, UserResponseDto>().ReverseMap();
+    }
+}
