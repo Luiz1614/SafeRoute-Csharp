@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SafeRoute.Infraestructure.Migrations
 {
     /// <inheritdoc />
-    public partial class changeIdType : Migration
+    public partial class initDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,6 +53,7 @@ namespace SafeRoute.Infraestructure.Migrations
                     Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
                         .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
                     Name = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
+                    Cpf = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     Email = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
                     Phone = table.Column<string>(type: "NVARCHAR2(20)", maxLength: 20, nullable: false),
                     RegisterDate = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)

@@ -4,17 +4,21 @@ namespace SafeRoute.Contracts.Dtos.Requests;
 
 public class UserRequestDto
 {
-    [Required(ErrorMessage = "Name is required.")]
-    [StringLength(100, ErrorMessage = "Name must be at most 200 characters.")]
+    [Required(ErrorMessage = "O nome é obrigatório.")]
+    [StringLength(100, ErrorMessage = "O nome deve ter no máximo 100 caracteres.")]
     public string Name { get; set; }
 
-    [Required(ErrorMessage = "Email is required.")]
-    [EmailAddress(ErrorMessage = "Invalid email address.")]
-    [StringLength(100, ErrorMessage = "Email must be at most 100 characters.")]
+    [Required(ErrorMessage = "O CPF é obrigatório.")]
+    [RegularExpression(@"^\d{11}$", ErrorMessage = "O CPF deve conter exatamente 11 dígitos numéricos.")]
+    public string Cpf { get; set; }
+
+    [Required(ErrorMessage = "O e-mail é obrigatório.")]
+    [EmailAddress(ErrorMessage = "E-mail inválido.")]
+    [StringLength(100, ErrorMessage = "O e-mail deve ter no máximo 100 caracteres.")]
     public string Email { get; set; }
 
-    [Required(ErrorMessage = "Phone is required.")]
-    [Phone(ErrorMessage = "Invalid phone number.")]
-    [StringLength(11, ErrorMessage = "Phone must be at most 11 characters.")]
+    [Required(ErrorMessage = "O telefone é obrigatório.")]
+    [Phone(ErrorMessage = "Telefone inválido.")]
+    [StringLength(11, ErrorMessage = "O telefone deve ter no máximo 11 caracteres.")]
     public string Phone { get; set; }
 }

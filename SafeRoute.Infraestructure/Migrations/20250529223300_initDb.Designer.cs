@@ -12,8 +12,8 @@ using SafeRoute.Infraestructure.Data.AppData;
 namespace SafeRoute.Infraestructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250529015854_changeIdType")]
-    partial class changeIdType
+    [Migration("20250529223300_initDb")]
+    partial class initDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,6 +99,10 @@ namespace SafeRoute.Infraestructure.Migrations
                         .HasColumnType("NUMBER(10)");
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Email")
                         .IsRequired()

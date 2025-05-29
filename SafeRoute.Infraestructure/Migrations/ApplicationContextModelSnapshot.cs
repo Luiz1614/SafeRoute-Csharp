@@ -97,6 +97,10 @@ namespace SafeRoute.Infraestructure.Migrations
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)

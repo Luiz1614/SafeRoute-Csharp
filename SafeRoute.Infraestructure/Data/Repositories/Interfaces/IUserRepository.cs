@@ -4,8 +4,8 @@ using SafeRoute.Contracts.Dtos.Responses;
 public interface IUserRepository
 {
     Task<UserResponseDto> AddAsync(UserRequestDto requestDto);
-    Task<bool> DeleteAsync(int id);
+    Task<bool> DeleteByCpfAsync(string cpf);
     Task<IEnumerable<UserResponseDto>> GetAllAsync();
-    Task<UserResponseDto?> GetByIdAsync(int id);
-    Task<UserResponseDto?> UpdateAsync(int id, UserRequestDto requestDto);
+    Task<UserResponseDto?> GetByCpfAsync(string cpf);
+    Task<UserResponseDto?> UpdateByCpfAsync(string cpf, UserRequestDto requestDto);
 }
