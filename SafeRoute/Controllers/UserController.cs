@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SafeRoute.Application.Services;
 using SafeRoute.Application.Services.Interfaces;
 using SafeRoute.Contracts.Dtos.Requests;
 using SafeRoute.Contracts.Dtos.Responses;
+using SafeRoute.Domain.Entities;
+using System.Net;
 
 namespace SafeRoute.API.Controllers
 {
@@ -24,11 +25,11 @@ namespace SafeRoute.API.Controllers
             {
                 var result = await _userService.AddUserAsync(request);
 
-                return Ok(result);
+                return StatusCode((int) HttpStatusCode.OK, "Usuário Adicionado com sucesso.");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Internal server error: {ex.Message}");
             }
         }
 
@@ -38,11 +39,15 @@ namespace SafeRoute.API.Controllers
             try
             {
                 var users = await _userService.GetAllUsersAsync();
-                return Ok(users);
+
+                if (users == null)
+                    return StatusCode((int) HttpStatusCode.NotFound, "Nenhum Usuário encontrado.");
+
+                return StatusCode((int) HttpStatusCode.OK, users);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Internal server error: {ex.Message}");
             }
         }
 
@@ -54,13 +59,13 @@ namespace SafeRoute.API.Controllers
                 var user = await _userService.GetUserByIdAsync(id);
 
                 if (user == null)
-                    return NotFound();
+                    return StatusCode((int)HttpStatusCode.NotFound, "Nenhum Usuário encontrado.");
 
-                return Ok(user);
+                return StatusCode((int)HttpStatusCode.OK, user);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Internal server error: {ex.Message}");
             }
         }
 
@@ -70,13 +75,15 @@ namespace SafeRoute.API.Controllers
             try
             {
                 var result = await _userService.UpdateUserAsync(id, request);
+
                 if (result == null)
-                    return NotFound();
-                return Ok(result);
+                    return StatusCode((int)HttpStatusCode.NotFound, "Nenhum usuário encontrado.");
+
+                return StatusCode((int)HttpStatusCode.NoContent, "Usuário atualizado com sucesso!");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Internal server error: {ex.Message}");
             }
         }
 
@@ -88,13 +95,13 @@ namespace SafeRoute.API.Controllers
                 var deleted = await _userService.DeleteUserAsync(id);
 
                 if (!deleted)
-                    return NotFound();
+                    return StatusCode((int)HttpStatusCode.NotFound, "Usuário não encontrado.");
 
-                return NoContent();
+                return StatusCode((int)HttpStatusCode.NoContent, "Usuário deletado com sucesso!");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Internal server error: {ex.Message}");
             }
         }
     }
