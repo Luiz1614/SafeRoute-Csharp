@@ -3,11 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SafeRoute.Domain.Entities;
 
-public class Event
+public class ClimaticEvent
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
+    public string EventCode { get; set; }
     public string Type { get; set; }
     public string Description { get; set; }
     public DateTime EventTime { get; set; }

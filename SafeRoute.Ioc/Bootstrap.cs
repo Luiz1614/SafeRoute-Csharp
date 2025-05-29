@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SafeRoute.Application.Services;
 using SafeRoute.Application.Services.Interfaces;
 using SafeRoute.Infraestructure.Data.AppData;
+using SafeRoute.Infraestructure.Data.Repositories;
+using SafeRoute.Infraestructure.Data.Repositories.Interfaces;
 using SafeRoute.Infraestructure.Mappings;
 
 namespace SafeRoute.Ioc;
@@ -20,6 +22,9 @@ public class Bootstrap
 
         service.AddScoped<IUserRepository, UserRepository>();
         service.AddScoped<IUserService, UserService>();
+
+        service.AddScoped<IClimaticEventRepository, ClimaticEventRepository>();
+        service.AddScoped<IClimaticEventService, ClimaticEventService>();
 
         service.AddAutoMapper(typeof(MapperProfile));
     }

@@ -7,7 +7,7 @@ public class ApplicationContext : DbContext
 {
     public DbSet<User> Users { get; set; }
     public DbSet<SafeResource> SafeResources { get; set; }
-    public DbSet<Event> Events { get; set; }
+    public DbSet<ClimaticEvent> Events { get; set; }
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
@@ -28,7 +28,7 @@ public class ApplicationContext : DbContext
                   .IsRequired();
         });
 
-        modelBuilder.Entity<Event>(entity =>
+        modelBuilder.Entity<ClimaticEvent>(entity =>
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Type)
