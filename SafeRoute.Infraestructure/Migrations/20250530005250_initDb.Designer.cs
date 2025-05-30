@@ -12,7 +12,7 @@ using SafeRoute.Infraestructure.Data.AppData;
 namespace SafeRoute.Infraestructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20250529223300_initDb")]
+    [Migration("20250530005250_initDb")]
     partial class initDb
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace SafeRoute.Infraestructure.Migrations
 
             OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SafeRoute.Domain.Entities.Event", b =>
+            modelBuilder.Entity("SafeRoute.Domain.Entities.ClimaticEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,6 +37,10 @@ namespace SafeRoute.Infraestructure.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("NVARCHAR2(500)");
+
+                    b.Property<string>("EventCode")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<DateTime>("EventTime")
                         .HasColumnType("TIMESTAMP(7)");
@@ -86,6 +90,10 @@ namespace SafeRoute.Infraestructure.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR2(100)");
+
+                    b.Property<string>("ResourceCode")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Id");
 

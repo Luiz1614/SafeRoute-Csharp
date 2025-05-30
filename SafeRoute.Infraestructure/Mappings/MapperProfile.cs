@@ -14,5 +14,8 @@ public class MapperProfile : Profile
 
         CreateMap<ClimaticEvent, ClimaticEventRequestDto>().ReverseMap();
         CreateMap<ClimaticEvent, ClimaticEventResponseDto>().ReverseMap();
+
+        CreateMap<SafeResource, SafeResourceRequestDto>().ReverseMap();
+        CreateMap<SafeResource, SafeResourceResponseDto>().ReverseMap();
     }
 }

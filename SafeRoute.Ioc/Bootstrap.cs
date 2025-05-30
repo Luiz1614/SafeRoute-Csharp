@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SafeRoute.Application;
 using SafeRoute.Application.Services;
 using SafeRoute.Application.Services.Interfaces;
 using SafeRoute.Infraestructure.Data.AppData;
@@ -25,6 +26,9 @@ public class Bootstrap
 
         service.AddScoped<IClimaticEventRepository, ClimaticEventRepository>();
         service.AddScoped<IClimaticEventService, ClimaticEventService>();
+
+        service.AddScoped<ISafeResourceRepository, SafeResourceRepository>();
+        service.AddScoped<ISafeResourceService, SafeResourceService>();
 
         service.AddAutoMapper(typeof(MapperProfile));
     }

@@ -4,8 +4,8 @@ namespace SafeRoute.Contracts.Dtos.Requests;
 
 public class ClimaticEventRequestDto
 {
-    [Required]
-    [StringLength(50)]
+    [Required(ErrorMessage = "O código do evento climatico é obrigatório.")]
+    [StringLength(20, ErrorMessage = "O código do evento climatico deve ter no máximo 20 caracteres.")]
     public string EventCode { get; set; }
 
     [Required(ErrorMessage = "O tipo é obrigatório.")]
