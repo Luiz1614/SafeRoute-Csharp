@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SafeRoute.Application.Services;
 using SafeRoute.Application.Services.Interfaces;
 using SafeRoute.Contracts.Dtos.Requests;
 using SafeRoute.Contracts.Dtos.Responses;
+using System.Net;
 
 namespace SafeRoute.API.Controllers
 {
@@ -23,12 +23,11 @@ namespace SafeRoute.API.Controllers
             try
             {
                 var result = await _userService.AddUserAsync(request);
-
-                return Ok(result);
+                return StatusCode((int)HttpStatusCode.OK, "Usuário adicionado com sucesso.");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro interno do servidor: {ex.Message}");
             }
         }
 
@@ -38,63 +37,69 @@ namespace SafeRoute.API.Controllers
             try
             {
                 var users = await _userService.GetAllUsersAsync();
-                return Ok(users);
+
+                if (users == null || !users.Any())
+                    return StatusCode((int)HttpStatusCode.NotFound, "Nenhum usuário encontrado.");
+
+                return StatusCode((int)HttpStatusCode.OK, users);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro interno do servidor: {ex.Message}");
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UserResponseDto>> GetUserById(int id)
+        [HttpGet("{cpf}")]
+        public async Task<ActionResult<UserResponseDto>> GetUserByCpf(string cpf)
         {
             try
             {
-                var user = await _userService.GetUserByIdAsync(id);
+                var user = await _userService.GetUserByCpfAsync(cpf);
 
                 if (user == null)
-                    return NotFound();
+                    return StatusCode((int)HttpStatusCode.NotFound, "Nenhum usuário encontrado.");
 
-                return Ok(user);
+                return StatusCode((int)HttpStatusCode.OK, user);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro interno do servidor: {ex.Message}");
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<UserResponseDto>> UpdateUser(int id, [FromBody] UserRequestDto request)
+        [HttpPut("{cpf}")]
+        public async Task<ActionResult<UserResponseDto>> UpdateUser(string cpf, [FromBody] UserRequestDto request)
         {
             try
             {
-                var result = await _userService.UpdateUserAsync(id, request);
+                var result = await _userService.UpdateUserByCpfAsync(cpf, request);
+
                 if (result == null)
-                    return NotFound();
-                return Ok(result);
+                    return StatusCode((int)HttpStatusCode.NotFound, "Nenhum usuário encontrado.");
+
+                return StatusCode((int)HttpStatusCode.OK, "Usuário atualizado com sucesso!");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro interno do servidor: {ex.Message}");
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteUser(int id)
+        [HttpDelete("{cpf}")]
+        public async Task<ActionResult> DeleteUser(string cpf)
         {
             try
             {
-                var deleted = await _userService.DeleteUserAsync(id);
+                var deleted = await _userService.DeleteUserByCpfAsync(cpf);
 
                 if (!deleted)
-                    return NotFound();
+                    return StatusCode((int)HttpStatusCode.NotFound, "Usuário não encontrado.");
 
-                return NoContent();
+                return StatusCode((int)HttpStatusCode.OK, "Usuário deletado com sucesso!");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
+                return StatusCode((int)HttpStatusCode.InternalServerError, $"Erro interno do servidor: {ex.Message}");
             }
         }
     }

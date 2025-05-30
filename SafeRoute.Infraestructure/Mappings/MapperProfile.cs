@@ -11,5 +11,11 @@ public class MapperProfile : Profile
     {
         CreateMap<User, UserRequestDto>().ReverseMap();
         CreateMap<User, UserResponseDto>().ReverseMap();
+
+        CreateMap<ClimaticEvent, ClimaticEventRequestDto>().ReverseMap();
+        CreateMap<ClimaticEvent, ClimaticEventResponseDto>().ReverseMap();
+
+        CreateMap<SafeResource, SafeResourceRequestDto>().ReverseMap();
+        CreateMap<SafeResource, SafeResourceResponseDto>().ReverseMap();
     }
 }

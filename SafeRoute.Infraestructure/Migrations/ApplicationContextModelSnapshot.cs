@@ -22,7 +22,7 @@ namespace SafeRoute.Infraestructure.Migrations
 
             OracleModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SafeRoute.Domain.Entities.Event", b =>
+            modelBuilder.Entity("SafeRoute.Domain.Entities.ClimaticEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,6 +34,10 @@ namespace SafeRoute.Infraestructure.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("NVARCHAR2(500)");
+
+                    b.Property<string>("EventCode")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<DateTime>("EventTime")
                         .HasColumnType("TIMESTAMP(7)");
@@ -84,6 +88,10 @@ namespace SafeRoute.Infraestructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("NVARCHAR2(100)");
 
+                    b.Property<string>("ResourceCode")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
                     b.HasKey("Id");
 
                     b.ToTable("SafeResources");
@@ -96,6 +104,10 @@ namespace SafeRoute.Infraestructure.Migrations
                         .HasColumnType("NUMBER(10)");
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Email")
                         .IsRequired()

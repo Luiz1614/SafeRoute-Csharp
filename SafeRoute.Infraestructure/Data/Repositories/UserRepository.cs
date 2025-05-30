@@ -34,21 +34,22 @@ public class UserRepository : IUserRepository
         return responseDtos;
     }
 
-    public async Task<UserResponseDto?> GetByIdAsync(int id)
+    public async Task<UserResponseDto?> GetByCpfAsync(string cpf)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Cpf == cpf);
         if (user == null) return null;
 
         var responseDto = _mapper.Map<UserResponseDto>(user);
         return responseDto;
     }
 
-    public async Task<UserResponseDto?> UpdateAsync(int id, UserRequestDto requestDto)
+    public async Task<UserResponseDto?> UpdateByCpfAsync(string cpf, UserRequestDto requestDto)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Cpf == cpf);
         if (user == null) return null;
 
         user.Name = requestDto.Name;
+        user.Cpf = requestDto.Cpf;
         user.Email = requestDto.Email;
         user.Phone = requestDto.Phone;
 
@@ -58,9 +59,9 @@ public class UserRepository : IUserRepository
         return responseDto;
     }
 
-    public async Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteByCpfAsync(string cpf)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Cpf == cpf);
         if (user == null) return false;
 
         _context.Users.Remove(user);

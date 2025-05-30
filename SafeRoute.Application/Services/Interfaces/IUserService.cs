@@ -1,14 +1,13 @@
 ﻿using SafeRoute.Contracts.Dtos.Requests;
 using SafeRoute.Contracts.Dtos.Responses;
 
-namespace SafeRoute.Application.Services.Interfaces
+namespace SafeRoute.Application.Services.Interfaces;
+
+public interface IUserService
 {
-    public interface IUserService
-    {
-        Task<UserResponseDto> AddUserAsync(UserRequestDto requestDto);
-        Task<bool> DeleteUserAsync(int id);
-        Task<IEnumerable<UserResponseDto>> GetAllUsersAsync();
-        Task<UserResponseDto?> GetUserByIdAsync(int id);
-        Task<UserResponseDto?> UpdateUserAsync(int id, UserRequestDto requestDto);
-    }
+    Task<UserResponseDto> AddUserAsync(UserRequestDto requestDto);
+    Task<bool> DeleteUserByCpfAsync(string cpf);
+    Task<IEnumerable<UserResponseDto>> GetAllUsersAsync();
+    Task<UserResponseDto?> GetUserByCpfAsync(string cpf);
+    Task<UserResponseDto?> UpdateUserByCpfAsync(string cpf, UserRequestDto requestDto);
 }
