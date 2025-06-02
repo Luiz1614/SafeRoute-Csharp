@@ -11,11 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SafeRoute.Contracts\SafeRoute.Contracts.csproj" />
-    <ProjectReference Include="..\SafeRoute.Infraestructure\SafeRoute.Infraestructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Data\training_data.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
