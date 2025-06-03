@@ -30,6 +30,8 @@ public class Bootstrap
         service.AddScoped<ISafeResourceRepository, SafeResourceRepository>();
         service.AddScoped<ISafeResourceService, SafeResourceService>();
 
+        service.AddScoped<ISentimentAnalysisService, SentimentAnalysisService>();
+
         service.AddAutoMapper(typeof(MapperProfile));
     }
 }
