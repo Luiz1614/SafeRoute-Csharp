@@ -2,6 +2,7 @@
 using SafeRoute.Application.Services.Interfaces;
 using SafeRoute.Contracts.Dtos.Requests;
 using SafeRoute.Contracts.Dtos.Responses;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 
 namespace SafeRoute.API.Controllers;
@@ -18,6 +19,10 @@ public class ClimaticEventController : ControllerBase
     }
 
     [HttpPost]
+    [SwaggerOperation(Summary = "Adiciona um novo evento climático.")]
+    [SwaggerResponse(201, "Evento climático criado com sucesso.", typeof(ClimaticEventResponseDto))]
+    [SwaggerResponse(400, "Requisição inválida. Verifique os dados fornecidos.")]
+    [SwaggerResponse(500, "Erro interno do servidor.")]
     public async Task<ActionResult<ClimaticEventResponseDto>> AddEvent([FromBody] ClimaticEventRequestDto request)
     {
         try
@@ -32,6 +37,10 @@ public class ClimaticEventController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(Summary = "Obtém todos os eventos climáticos.")]
+    [SwaggerResponse(200, "Lista de eventos climáticos obtida com sucesso.", typeof(IEnumerable<ClimaticEventResponseDto>))]
+    [SwaggerResponse(404, "Nenhum evento encontrado.")]
+    [SwaggerResponse(500, "Erro interno do servidor.")]
     public async Task<ActionResult<IEnumerable<ClimaticEventResponseDto>>> GetAllEvents()
     {
         try
@@ -48,6 +57,10 @@ public class ClimaticEventController : ControllerBase
     }
 
     [HttpGet("{eventCode}")]
+    [SwaggerOperation(Summary = "Obtém um evento climático pelo código do evento.")]
+    [SwaggerResponse(200, "Evento climático obtido com sucesso.", typeof(ClimaticEventResponseDto))]
+    [SwaggerResponse(404, "Evento não encontrado.")]
+    [SwaggerResponse(500, "Erro interno do servidor.")]
     public async Task<ActionResult<ClimaticEventResponseDto>> GetEventByEventCode(string eventCode)
     {
         try
@@ -64,6 +77,11 @@ public class ClimaticEventController : ControllerBase
     }
 
     [HttpPut("{eventCode}")]
+    [SwaggerOperation(Summary = "Atualiza um evento climático existente pelo código do evento.")]
+    [SwaggerResponse(200, "Evento climático atualizado com sucesso.", typeof(ClimaticEventResponseDto))]
+    [SwaggerResponse(404, "Evento não encontrado.")]
+    [SwaggerResponse(400, "Requisição inválida. Verifique os dados fornecidos.")]
+    [SwaggerResponse(500, "Erro interno do servidor.")]
     public async Task<ActionResult<ClimaticEventResponseDto>> UpdateEvent(string eventCode, [FromBody] ClimaticEventRequestDto request)
     {
         try
@@ -80,6 +98,10 @@ public class ClimaticEventController : ControllerBase
     }
 
     [HttpDelete("{eventCode}")]
+    [SwaggerOperation(Summary = "Remove um evento climático pelo código do evento.")]
+    [SwaggerResponse(200, "Evento deletado com sucesso.")]
+    [SwaggerResponse(404, "Evento não encontrado.")]
+    [SwaggerResponse(500, "Erro interno do servidor.")]
     public async Task<ActionResult> DeleteEvent(string eventCode)
     {
         try
