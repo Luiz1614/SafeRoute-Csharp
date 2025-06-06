@@ -56,7 +56,7 @@ public class ClimaticEventController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpGet("code")]
     [SwaggerOperation(Summary = "Obtém um evento climático pelo código do evento.")]
     [SwaggerResponse(200, "Evento climático obtido com sucesso.", typeof(ClimaticEventResponseDto))]
     [SwaggerResponse(404, "Evento não encontrado.")]
@@ -97,7 +97,7 @@ public class ClimaticEventController : ControllerBase
         }
     }
 
-    [HttpDelete("{eventCode}")]
+    [HttpDelete]
     [SwaggerOperation(Summary = "Remove um evento climático pelo código do evento.")]
     [SwaggerResponse(200, "Evento deletado com sucesso.")]
     [SwaggerResponse(404, "Evento não encontrado.")]

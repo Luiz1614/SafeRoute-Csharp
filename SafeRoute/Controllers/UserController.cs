@@ -58,7 +58,7 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpGet("cpf")]
     [SwaggerOperation(Summary = "Obtém um usuário pelo CPF.")]
     [SwaggerResponse(200, "Usuário obtido com sucesso.", typeof(UserResponseDto))]
     [SwaggerResponse(404, "Nenhum usuário encontrado.")]
