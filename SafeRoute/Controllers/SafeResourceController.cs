@@ -56,7 +56,7 @@ public class SafeResourceController : ControllerBase
         }
     }
 
-    [HttpGet]
+    [HttpGet("code")]
     [SwaggerOperation(Summary = "Obtém um recurso seguro pelo código do recurso.")]
     [SwaggerResponse(200, "Recurso seguro obtido com sucesso.", typeof(SafeResourceResponseDto))]
     [SwaggerResponse(404, "Recurso não encontrado.")]
