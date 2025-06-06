@@ -17,8 +17,8 @@ public class Bootstrap
     {
         service.AddDbContext<ApplicationContext>(options =>
         {
-            var connectionString = configuration.GetConnectionString("Oracle");
-            options.UseOracle(connectionString);
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+            options.UseSqlServer(connectionString);
         });
 
         service.AddScoped<IUserRepository, UserRepository>();
