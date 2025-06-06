@@ -56,12 +56,12 @@ public class ClimaticEventController : ControllerBase
         }
     }
 
-    [HttpGet("{eventCode}")]
+    [HttpGet]
     [SwaggerOperation(Summary = "Obtém um evento climático pelo código do evento.")]
     [SwaggerResponse(200, "Evento climático obtido com sucesso.", typeof(ClimaticEventResponseDto))]
     [SwaggerResponse(404, "Evento não encontrado.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult<ClimaticEventResponseDto>> GetEventByEventCode(string eventCode)
+    public async Task<ActionResult<ClimaticEventResponseDto>> GetEventByEventCode([FromQuery] string eventCode)
     {
         try
         {
@@ -76,13 +76,13 @@ public class ClimaticEventController : ControllerBase
         }
     }
 
-    [HttpPut("{eventCode}")]
+    [HttpPut]
     [SwaggerOperation(Summary = "Atualiza um evento climático existente pelo código do evento.")]
     [SwaggerResponse(200, "Evento climático atualizado com sucesso.", typeof(ClimaticEventResponseDto))]
     [SwaggerResponse(404, "Evento não encontrado.")]
     [SwaggerResponse(400, "Requisição inválida. Verifique os dados fornecidos.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult<ClimaticEventResponseDto>> UpdateEvent(string eventCode, [FromBody] ClimaticEventRequestDto request)
+    public async Task<ActionResult<ClimaticEventResponseDto>> UpdateEvent([FromQuery] string eventCode, [FromBody] ClimaticEventRequestDto request)
     {
         try
         {
@@ -102,7 +102,7 @@ public class ClimaticEventController : ControllerBase
     [SwaggerResponse(200, "Evento deletado com sucesso.")]
     [SwaggerResponse(404, "Evento não encontrado.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult> DeleteEvent(string eventCode)
+    public async Task<ActionResult> DeleteEvent([FromQuery] string eventCode)
     {
         try
         {
