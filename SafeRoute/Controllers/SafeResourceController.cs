@@ -56,12 +56,12 @@ public class SafeResourceController : ControllerBase
         }
     }
 
-    [HttpGet("{resourceCode}")]
+    [HttpGet]
     [SwaggerOperation(Summary = "Obtém um recurso seguro pelo código do recurso.")]
     [SwaggerResponse(200, "Recurso seguro obtido com sucesso.", typeof(SafeResourceResponseDto))]
     [SwaggerResponse(404, "Recurso não encontrado.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult<SafeResourceResponseDto>> GetResourceByCode(string resourceCode)
+    public async Task<ActionResult<SafeResourceResponseDto>> GetResourceByCode([FromQuery] string resourceCode)
     {
         try
         {
@@ -76,13 +76,13 @@ public class SafeResourceController : ControllerBase
         }
     }
 
-    [HttpPut("{resourceCode}")]
+    [HttpPut]
     [SwaggerOperation(Summary = "Atualiza um recurso seguro existente pelo código do recurso.")]
     [SwaggerResponse(200, "Recurso seguro atualizado com sucesso.", typeof(SafeResourceResponseDto))]
     [SwaggerResponse(404, "Recurso não encontrado.")]
     [SwaggerResponse(400, "Requisição inválida. Verifique os dados fornecidos.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult<SafeResourceResponseDto>> UpdateResource(string resourceCode, [FromBody] SafeResourceRequestDto request)
+    public async Task<ActionResult<SafeResourceResponseDto>> UpdateResource([FromQuery] string resourceCode, [FromBody] SafeResourceRequestDto request)
     {
         try
         {
@@ -97,12 +97,12 @@ public class SafeResourceController : ControllerBase
         }
     }
 
-    [HttpDelete("{resourceCode}")]
+    [HttpDelete]
     [SwaggerOperation(Summary = "Remove um recurso seguro pelo código do recurso.")]
     [SwaggerResponse(200, "Recurso deletado com sucesso.")]
     [SwaggerResponse(404, "Recurso não encontrado.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult> DeleteResource(string resourceCode)
+    public async Task<ActionResult> DeleteResource([FromQuery] string resourceCode)
     {
         try
         {

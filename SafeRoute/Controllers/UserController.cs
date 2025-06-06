@@ -58,12 +58,12 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpGet("{cpf}")]
+    [HttpGet]
     [SwaggerOperation(Summary = "Obtém um usuário pelo CPF.")]
     [SwaggerResponse(200, "Usuário obtido com sucesso.", typeof(UserResponseDto))]
     [SwaggerResponse(404, "Nenhum usuário encontrado.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult<UserResponseDto>> GetUserByCpf(string cpf)
+    public async Task<ActionResult<UserResponseDto>> GetUserByCpf([FromQuery] string cpf)
     {
         try
         {
@@ -80,13 +80,13 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpPut("{cpf}")]
+    [HttpPut]
     [SwaggerOperation(Summary = "Atualiza um usuário existente pelo CPF.")]
     [SwaggerResponse(200, "Usuário atualizado com sucesso!")]
     [SwaggerResponse(404, "Nenhum usuário encontrado.")]
     [SwaggerResponse(400, "Requisição inválida. Verifique os dados fornecidos.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult<UserResponseDto>> UpdateUser(string cpf, [FromBody] UserRequestDto request)
+    public async Task<ActionResult<UserResponseDto>> UpdateUser([FromQuery] string cpf, [FromBody] UserRequestDto request)
     {
         try
         {
@@ -103,12 +103,12 @@ public class UserController : ControllerBase
         }
     }
 
-    [HttpDelete("{cpf}")]
+    [HttpDelete]
     [SwaggerOperation(Summary = "Remove um usuário pelo CPF.")]
     [SwaggerResponse(200, "Usuário deletado com sucesso!")]
     [SwaggerResponse(404, "Usuário não encontrado.")]
     [SwaggerResponse(500, "Erro interno do servidor.")]
-    public async Task<ActionResult> DeleteUser(string cpf)
+    public async Task<ActionResult> DeleteUser([FromQuery] string cpf)
     {
         try
         {
