@@ -54,6 +54,8 @@ dotnet run
 A API estará disponível em:  
 https://localhost:7117
 
+https://saferoute-g5gkfacqeyckadb3.eastus-01.azurewebsites.net
+
 ### 5. Acessar a documentação Swagger
 
 Navegue até:  
