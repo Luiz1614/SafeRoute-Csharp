@@ -2,7 +2,6 @@
 
 ## Descrição do Projeto
 
-
 O **SafeRoute** é uma API desenvolvida em .NET 8 para gerenciamento de rotas seguras, eventos climáticos e recursos de abrigo em situações de emergência. O sistema permite o cadastro, consulta, atualização e remoção de usuários, eventos climáticos e abrigos, além de oferecer recursos de análise de sentimento em relatos de usuários utilizando ML.NET. O objetivo é fornecer informações rápidas e confiáveis para tomada de decisão em situações críticas, promovendo segurança e eficiência no atendimento à população.
 
 ---
